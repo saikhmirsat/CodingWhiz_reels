@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorful Wall Clock</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #f06, #6f0, #06f, #f06);
+            background-size: 400% 400%;
+            animation: gradientAnimation 4s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        #clock-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #clock {
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.197);
+            /* Adjust the alpha (0.3) for the transparency you desire */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            /* Optional shadow for a glass-like effect */
+        }
+
+        .hand {
+            position: absolute;
+            background-color: #000;
+            transform-origin: 0 50%;
+        }
+
+        #hour {
+            height: 6px;
+            width: 25%;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-100%) rotate(90deg);
+        }
+
+        #minute {
+            height: 4px;
+            width: 45%;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-100%) rotate(90deg);
+        }
+
+        #second {
+            height: 2px;
+            width: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-100%) rotate(90deg);
+            background-color: red;
+        }
+
+        .hour-number {
+            position: absolute;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .minute-line {
+            position: absolute;
+            width: 2px;
+            height: 10px;
+            background-color: #000;
+            top: 0;
+            transform: translateY(100%);
+        }
+
+        #digital-time {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="clock-container">
+        <div id="clock">
+            <!-- Hour Numbers -->
+            <div class="hour-number" style="top: 6%; left: 48%;">12</div>
+            <div class="hour-number" style="top: 13%; left: 70%;">1</div>
+            <div class="hour-number" style="top: 28%; left: 84%;">2</div>
+            <div class="hour-number" style="top: 45%; left: 88%;">3</div>
+            <div class="hour-number" style="top: 64%; left: 84%;">4</div>
+            <div class="hour-number" style="top: 81%; left: 70%;">5</div>
+            <div class="hour-number" style="top: 88%; left: 48%;">6</div>
+            <div class="hour-number" style="top: 81%; left: 26%;">7</div>
+            <div class="hour-number" style="top: 64%; left: 12%;">8</div>
+            <div class="hour-number" style="top: 45%; left: 8%;">9</div>
+            <div class="hour-number" style="top: 28%; left: 12%;">10</div>
+            <div class="hour-number" style="top: 13%; left: 26%;">11</div>
+
+            <!-- Clock Hands -->
+            <div id="hour" class="hand"></div>
+            <div id="minute" class="hand"></div>
+            <div id="second" class="hand"></div>
+        </div>
+
+        <!-- Digital Time Display -->
+        <div id="digital-time">12:00:00 AM</div>
+    </div>
+
+    <script>
+        function setInitialClockHands() {
+            const hourHand = document.getElementById('hour');
+            const minuteHand = document.getElementById('minute');
+            const secondHand = document.getElementById('second');
+
+            const now = new Date();
+            const seconds = now.getSeconds();
+            const minutes = now.getMinutes();
+            const hours = now.getHours();
+
+            const hourDeg = (360 / 12) * (hours + minutes / 60);
+            const minuteDeg = (360 / 60) * minutes;
+            const secondDeg = (360 / 60) * seconds;
+
+            hourHand.style.transform = `rotate(${hourDeg}deg)`;
+            minuteHand.style.transform = `rotate(${minuteDeg}deg)`;
+            secondHand.style.transform = `rotate(${secondDeg}deg)`;
+        }
+
+        function updateClock() {
+            const hourHand = document.getElementById('hour');
+            const minuteHand = document.getElementById('minute');
+            const secondHand = document.getElementById('second');
+            const digitalTime = document.getElementById('digital-time');
+
+            const now = new Date();
+            const seconds = now.getSeconds();
+            const minutes = now.getMinutes();
+            const hours = now.getHours();
+
+            const hourDeg = (360 / 12) * (hours + minutes / 60);
+            const minuteDeg = (360 / 60) * minutes;
+            const secondDeg = (360 / 60) * seconds;
+
+            hourHand.style.transform = `rotate(${hourDeg}deg)`;
+            minuteHand.style.transform = `rotate(${minuteDeg}deg)`;
+            secondHand.style.transform = `rotate(${secondDeg}deg)`;
+
+            const ampm = hours >= 12 ? "PM" : "AM";
+            const formattedHours = hours % 12 || 12;
+            const formattedTime = `${String(formattedHours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} ${ampm}`;
+            digitalTime.textContent = formattedTime;
+        }
+
+        setInitialClockHands(); // Set the initial clock hands
+        setInterval(updateClock, 1000);
+    </script>
+
+</body>
+
+</html>
