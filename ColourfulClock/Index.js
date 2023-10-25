@@ -1,38 +1,48 @@
-function updateDigitalClock() {
-    const digitalHours = document.getElementById('digital-hours');
-    const digitalMinutes = document.getElementById('digital-minutes');
-    const digitalSeconds = document.getElementById('digital-seconds');
+function setInitialClockHands() {
+    const hourHand = document.getElementById('hour');
+    const minuteHand = document.getElementById('minute');
+    const secondHand = document.getElementById('second');
 
     const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
-
-    digitalHours.textContent = hours;
-    digitalMinutes.textContent = minutes;
-    digitalSeconds.textContent = seconds;
-}
-
-function rotateClockHands() {
-    const hourHand = document.querySelector('.hour-hand');
-    const minuteHand = document.querySelector('.minute-hand');
-    const secondHand = document.querySelector('.second-hand');
-
-    const now = new Date();
-    const hours = now.getHours() % 12;
-    const minutes = now.getMinutes();
     const seconds = now.getSeconds();
+    const minutes = now.getMinutes();
+    const hours = now.getHours();
 
-    const hourDeg = (360 / 12) * hours + (360 / 12) * (minutes / 60);
-    const minuteDeg = (360 / 60) * minutes;
-    const secondDeg = (360 / 60) * seconds;
+    const hourDeg = (360 / 12) * (hours + minutes / 60) + 90;
+    const minuteDeg = (360 / 60) * minutes + 90;
+    const secondDeg = (360 / 60) * seconds + 90;
 
     hourHand.style.transform = `rotate(${hourDeg}deg)`;
     minuteHand.style.transform = `rotate(${minuteDeg}deg)`;
     secondHand.style.transform = `rotate(${secondDeg}deg)`;
 }
 
-setInterval(rotateClockHands, 1000); // Update clock hands every second
-setInterval(updateDigitalClock, 1000); // Update digital clock every second
-rotateClockHands(); // Initial call
-updateDigitalClock(); // Initial call
+
+function updateClock() {
+    const hourHand = document.getElementById('hour');
+    const minuteHand = document.getElementById('minute');
+    const secondHand = document.getElementById('second');
+    const digitalTime = document.getElementById('digital-time');
+
+    const now = new Date();
+    const seconds = now.getSeconds();
+    const minutes = now.getMinutes();
+    const hours = now.getHours();
+
+    const hourDeg = (360 / 12) * (hours + minutes / 60);
+    const minuteDeg = (360 / 60) * minutes;
+    const secondDeg = (360 / 60) * seconds;
+    // console.log({ hourDeg })
+
+    hourHand.style.transform = `rotate(${hourDeg - 90}deg)`;
+    minuteHand.style.transform = `rotate(${minuteDeg - 92}deg)`;
+    secondHand.style.transform = `rotate(${secondDeg - 89}deg)`;
+
+    const ampm = hours >= 12 ? "PM" : "AM";
+    const formattedHours = hours % 12 || 12;
+    const formattedTime = `${String(formattedHours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} ${ampm}`;
+    digitalTime.textContent = formattedTime;
+}
+
+setInitialClockHands(); // Set the initial clock hands
+setInterval(updateClock, 1000);
