@@ -11,7 +11,6 @@ function setInitialClockHands() {
     const hourDeg = (360 / 12) * (hours + minutes / 60) + 90;
     const minuteDeg = (360 / 60) * minutes + 90;
     const secondDeg = (360 / 60) * seconds + 90;
-
     hourHand.style.transform = `rotate(${hourDeg}deg)`;
     minuteHand.style.transform = `rotate(${minuteDeg}deg)`;
     secondHand.style.transform = `rotate(${secondDeg}deg)`;
@@ -32,7 +31,7 @@ function updateClock() {
     const hourDeg = (360 / 12) * (hours + minutes / 60);
     const minuteDeg = (360 / 60) * minutes;
     const secondDeg = (360 / 60) * seconds;
-    // console.log({ hourDeg })
+
 
     hourHand.style.transform = `rotate(${hourDeg - 90}deg)`;
     minuteHand.style.transform = `rotate(${minuteDeg - 92}deg)`;
@@ -44,5 +43,5 @@ function updateClock() {
     digitalTime.textContent = formattedTime;
 }
 
-setInitialClockHands(); // Set the initial clock hands
+setInitialClockHands();
 setInterval(updateClock, 1000);

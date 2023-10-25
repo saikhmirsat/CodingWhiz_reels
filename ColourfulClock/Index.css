@@ -44,9 +44,7 @@ body {
   justify-content: center;
   align-items: center;
   background: rgba(255, 255, 255, 0.197);
-  /* Adjust the alpha (0.3) for the transparency you desire */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  /* Optional shadow for a glass-like effect */
 }
 
 .hand {
@@ -96,12 +94,10 @@ body {
 }
 
 #digital-time {
-  /* border: 1px solid grey; */
   font-size: 24px;
   font-weight: bold;
   margin-top: 20px;
   background: rgba(255, 255, 255, 0.197);
-  /* Adjust the alpha (0.3) for the transparency you desire */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   padding: 10px 30px;
 }
