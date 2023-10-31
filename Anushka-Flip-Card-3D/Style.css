@@ -134,11 +134,9 @@ body {
   .card-back p {
     color: #ccc;
   }
-
   .card-back:hover {
     animation: BackCardLight 1s infinite;
   }
-
   @keyframes BackCardLight {
     0% {
       box-shadow: #3ca5e7 0px 0px 50px inset, 0px 0px 40px red;
