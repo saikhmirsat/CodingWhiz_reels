@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!-- @coding__whiz -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diwali Greetings</title>
+    <style>
+        #animationImage_mobile {
+            display: none;
+        }
+
+        body {
+            background-color: black;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        #greeting {
+            font-size: 24px;
+            color: rgb(0, 136, 255);
+            margin-top: 35vh;
+        }
+
+        #diwaliAnimation {
+            display: none;
+            /* Hide the Diwali animation initially */
+        }
+
+        #userName {
+            border: 1px solid rgb(0, 136, 255);
+            outline: none;
+            border-radius: 5px;
+            width: 300px;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: rgba(240, 248, 255, 0.131);
+            color: rgb(0, 136, 255);
+        }
+
+        #userName::placeholder {
+            color: rgba(0, 136, 255, 0.379);
+        }
+
+        #showAnimationButton {
+
+            padding: 5px 10px;
+            border: 1px solid rgb(0, 136, 255);
+            border-radius: 5px;
+            font-weight: bold;
+            background-color: rgb(0, 136, 255);
+            color: white;
+        }
+
+        #userNameDisplay {
+
+            font-weight: bold;
+            width: 100%;
+            font-size: 35px;
+            padding: 10px 20px;
+            position: absolute;
+            top: 200px;
+
+            color: rgb(26, 199, 246);
+            background-color: rgba(0, 0, 0, 0.703);
+        }
+
+        #alert {
+            color: red;
+
+            margin-top: -10px;
+            margin-bottom: -10px;
+        }
+
+        @keyframes vibrate {
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-2px);
+            }
+
+            50% {
+                transform: translateX(2px);
+            }
+
+            75% {
+                transform: translateX(-2px);
+            }
+
+            100% {
+                transform: translateX(2px);
+            }
+        }
+
+        #copyright {
+            color: #ffffffb1;
+
+            text-align: center;
+            padding: 10px 0;
+            font-size: 14px;
+            margin-top: 0px;
+
+        }
+
+
+        @media (max-width: 767px) {
+            #userNameDisplay {
+                margin-top: 100px;
+
+            }
+
+            #animationImage_mobile {
+                display: flex;
+                margin-top: -100px;
+                mix-blend-mode: lighten;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 id="greeting">Happy Diwali! ✨</h1>
+    <input type="text" placeholder="Put your full name" id="userName"><br>
+    <div id="alert"></div><br>
+    <div id="diwaliAnimation">
+        <img id="animationImage" src="https://i.gifer.com/93Fi.gif" alt="Diwali Animation">
+        <img id="animationImage_mobile" src="https://i.gifer.com/93Fi.gif" alt="Diwali Animation">
+        <p id="userNameDisplay"></p>
+    </div>
+    <button id="showAnimationButton">Click here</button>
+    <div id="copyright">
+
+    </div>
+
+    <script>
+        const greeting = document.getElementById("greeting");
+        const showAnimationButton = document.getElementById("showAnimationButton");
+        const diwaliAnimation = document.getElementById("diwaliAnimation");
+        const userNameInput = document.getElementById("userName");
+        const userNameDisplay = document.getElementById("userNameDisplay");
+        const alert = document.getElementById("alert");
+        const copyright = document.getElementById("copyright");
+
+        showAnimationButton.addEventListener("click", function () {
+            console.log(userNameInput.value)
+
+
+            if (userNameInput.value == "") {
+                alert.innerText = "Please enter your name"
+                alert.style.animation = "vibrate 0.3s ease ";
+            } else {
+                alert.style.display = "none"
+                const userName = userNameInput.value;
+                greeting.style.display = "none";
+                userNameInput.style.display = "none";
+                showAnimationButton.style.display = "none";
+                diwaliAnimation.style.display = "block";
+                userNameDisplay.innerText = `Happy Diwali ✨,\n${userName}!`;
+                copyright.innerText = "@ 2023 Saikh Mirsat . All rights reserved."
+            }
+        });
+    </script>
+</body>
+
+</html>
