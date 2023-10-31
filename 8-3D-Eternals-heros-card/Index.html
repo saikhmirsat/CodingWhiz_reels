@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0px;
+            perspective: 1000px;
+            background-color: black;
+        }
+
+        .card {
+            padding: 10px;
+            width: 300px;
+            height: 400px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-style: preserve-3d;
+            transition: transform 0.1s, box-shadow 0.1s;
+            background-image: url('https://t3.ftcdn.net/jpg/03/16/58/08/360_F_316580848_m7lZhhWQ43JrsEsBQQToJ8g73ALcv78Y.jpg ');
+            box-shadow: goldenrod 0px 0px 10px;
+
+        }
+
+        .card img {
+            width: 550px;
+            transform: translateZ(40px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <img src="https://o.remove.bg/downloads/da1e591e-8cc0-48ac-a0c6-7e000d48b29d/eternals-poster-4k_1637424219-removebg-preview.png"
+            alt="">
+    </div>
+
+</body>
+<script>
+    const card = document.querySelector(".card");
+
+    document.addEventListener("mousemove", (e) => {
+        const cardRect = card.getBoundingClientRect();
+        const cardCenterX = cardRect.left + cardRect.width / 2;
+        const cardCenterY = cardRect.top + cardRect.height / 2;
+
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+
+        const angleX = (mouseY - cardCenterY) / 10;
+        const angleY = (mouseX - cardCenterX) / 10;
+
+        card.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+
+        const shadowX = (mouseX - cardCenterX) / 50;
+        const shadowY = (mouseY - cardCenterY) / 50;
+
+        card.style.boxShadow = `${-shadowX}px ${shadowY}px 10px goldenrod`;
+    });
+</script>
+
+</html>
+
+
+<!-- https://o.remove.bg/downloads/da1e591e-8cc0-48ac-a0c6-7e000d48b29d/eternals-poster-4k_1637424219-removebg-preview.png -->
+<!-- https://t3.ftcdn.net/jpg/03/16/58/08/360_F_316580848_m7lZhhWQ43JrsEsBQQToJ8g73ALcv78Y.jpg -->
