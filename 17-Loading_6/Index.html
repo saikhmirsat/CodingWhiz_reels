@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Bar</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: black;
+        }
+
+        .progress-container {
+            width: 300px;
+            background-color: #f3f3f3;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0;
+            padding: 5px;
+            background-color: blueviolet;
+            border-radius: 8px;
+            text-align: center;
+            color: #fff;
+            font-size: 18px;
+            transition: width 0.5s linear;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar">0%</div>
+    </div>
+
+    <script>
+        let progressBar = document.getElementById('progress-bar');
+        let percentage = 0;
+
+        function updateProgress() {
+            percentage += 1;
+            progressBar.style.width = `${percentage}%`;
+            progressBar.innerText = `${percentage}%`;
+
+            if (percentage < 100) {
+                setTimeout(updateProgress, 50); // Adjust the timeout for the desired animation speed
+            }
+        }
+
+        updateProgress();
+    </script>
+</body>
+
+</html>

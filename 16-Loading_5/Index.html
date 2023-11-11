@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Animation</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: black;
+        }
+
+        .loader-container {
+            text-align: center;
+        }
+
+        .loader {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        .percentage {
+            font-size: 24px;
+            color: #3498db;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loader-container">
+        <div class="loader "></div>
+        <div class="percentage" id="percentage">0%</div>
+    </div>
+
+    <script>
+        let percentageElement = document.getElementById('percentage');
+        let percentage = 0;
+
+        function updatePercentage() {
+            percentage += 1;
+            percentageElement.innerText = `${percentage}%`;
+
+            if (percentage < 100) {
+                setTimeout(updatePercentage, 50);
+            } else {
+                document.querySelector('.loader').style.animation = 'none';
+            }
+        }
+        updatePercentage();
+    </script>
+</body>
+
+</html>

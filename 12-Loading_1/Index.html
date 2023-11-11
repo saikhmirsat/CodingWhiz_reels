@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .loading {
+        border: 6px solid rgb(199, 198, 198);
+        width: 60px;
+        height: 60px;
+        border-top: 6px solid rgb(0, 8, 255);
+        /* border-radius: 50%; */
+        /* animation: loading 0.5s linear infinite; */
+    }
+
+    @keyframes loading {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+<body>
+    <div class="loading"></div>
+</body>
+
+</html>

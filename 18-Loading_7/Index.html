@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Rotating Rings</title>
+</head>
+<style>
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-color: black;
+    }
+
+    .parent-ring {
+        border-radius: 50%;
+        width: 160px;
+        height: 160px;
+        position: relative;
+        animation: rotate 0.8s linear infinite;
+    }
+
+    .inner-ring {
+        width: 50%;
+        height: 50%;
+        position: absolute;
+    }
+
+    #ring1 {
+        border: 5px solid red;
+        border-bottom-right-radius: 50%;
+        border-top-right-radius: 50%;
+        border-bottom-left-radius: 50%;
+        animation: colourChange 05s infinite;
+        animation-delay: 0s, 0.5s;
+    }
+
+    #ring2 {
+        border: 5px solid rgb(0, 34, 255);
+        border-bottom-right-radius: 50%;
+        border-top-right-radius: 50%;
+        border-bottom-left-radius: 50%;
+        transform: rotate(90deg);
+        margin-left: 44%;
+        animation: colourChange 05s infinite;
+        animation-delay: 1s, 5.5s;
+    }
+
+    #ring3 {
+        border: 5px solid rgb(255, 208, 0);
+        border-bottom-right-radius: 50%;
+        border-top-right-radius: 50%;
+        border-bottom-left-radius: 50%;
+        transform: rotate(180deg);
+        margin-left: 44%;
+        margin-top: 44%;
+        animation: colourChange 05s infinite;
+        animation-delay: 1.5s, 2s;
+    }
+
+    #ring4 {
+        border: 5px solid rgb(0, 255, 119);
+        border-bottom-right-radius: 50%;
+        border-top-right-radius: 50%;
+        border-bottom-left-radius: 50%;
+        transform: rotate(270deg);
+        margin-top: 44%;
+        animation: colourChange 05s infinite;
+        animation-delay: 2s, 3s;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes colourChange {
+        0% {
+            border: 5px solid rgb(0, 255, 119);
+        }
+
+        20% {
+            border: 5px solid blueviolet;
+        }
+
+        40% {
+            border: 5px solid goldenrod;
+        }
+
+        60% {
+            border: 5px solid rgb(0, 255, 102);
+        }
+
+        80% {
+            border: 5px solid rgb(255, 51, 0);
+        }
+
+        100% {
+            border: 5px solid rgb(0, 221, 255);
+        }
+    }
+</style>
+
+<body>
+    <div class="parent-ring" id="parent-ring">
+        <div class="inner-ring" id="ring1"></div>
+        <div class="inner-ring" id="ring2"></div>
+        <div class="inner-ring" id="ring3"></div>
+        <div class="inner-ring" id="ring4"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            cursor: none;
+            background-color: #111;
+        }
+
+        .cursor {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: transparent;
+            mix-blend-mode: difference;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: background-color 0.3s ease-out;
+            z-index: 9999;
+        }
+
+        .trail {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            mix-blend-mode: lighten;
+            pointer-events: none;
+            z-index: 1;
+            animation: magicTrail 0.5s ease-out;
+        }
+
+        @keyframes magicTrail {
+
+
+            0% {
+                transform: scale(0);
+                opacity: 1;
+                background-color: rgb(146, 233, 16);
+            }
+
+            50% {
+                transform: scale(5);
+                opacity: 0;
+                background-color: #ff00ff;
+
+            }
+
+            100% {
+                transform: scale(0);
+                opacity: 1;
+                background-color: royalblue;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cursor"></div>
+
+    <script>
+        const cursor = document.querySelector('.cursor');
+
+        document.addEventListener('mousemove', (e) => {
+            const trail = document.createElement('div');
+            trail.className = 'trail';
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+
+            document.body.appendChild(trail);
+
+            setTimeout(() => {
+                trail.remove();
+            }, 500);
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+    </script>
+</body>
+
+</html>
